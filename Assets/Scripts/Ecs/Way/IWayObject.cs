@@ -2,10 +2,11 @@
 
 namespace Toweristika.Ecs
 {
-    public interface IMovable
+    public interface IWayObject
     {
         void Move(Vector3 delta);
-        Vector3 GetPosition();
         void SetPosition(Vector3 position);
+        Vector3 GetPosition();
+        void OnArrival();
     }
 }
