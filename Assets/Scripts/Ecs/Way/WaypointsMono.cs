@@ -2,9 +2,11 @@
 
 namespace Toweristika.Ecs
 {
-    public class WaypointsMono : MonoBehaviour
+    public class WayPointsMono : MonoBehaviour
     {
         [SerializeField] private WaypointMono[] waypoints;
+        [SerializeField] private int waypointsCount;
+
 
         public WaypointMono GetWaypoint(int index)
         {

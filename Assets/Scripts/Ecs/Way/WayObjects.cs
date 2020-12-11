@@ -1,74 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using Toweristika.Other;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Toweristika.Other;
+using Toweristika.Storage;
 
 namespace Toweristika.Ecs
 {
-    public class WayObjects : IProcessable
+    public class WayObjects : IInizializable, IProcessable
     {
-        private LinkedList<WayObject> wayObjects;
-        private WaypointsMono waypoints;
+        private WayPointsMono wayPoints;
+        private List<WayObject> wayObjects;
 
-        public WayObjects()
+        public void Inizialize()
         {
-            wayObjects = new LinkedList<WayObject>();
+            wayPoints = StorageFacility.Instance
+                .GetTransform(TransformObject.WayPoints)
+                .GetComponent<WayPointsMono>();
+
+            wayObjects = new List<WayObject>(50);
         }
-
-        public void AddWayObject(WayObject wayObject)
+        public void AddWayObject(AddWayObjectEvent add)
         {
-            wayObjects.AddLast(wayObject);
+            //WayObject wayObject = new WayObject();
+            //wayObjects.Add(wayObject);
+        }
+     
+        public void RemoveWayObject(RemoveWayObjectEvent remove)
+        {
+           // wayObjects.Remove(wayObject);
         }
 
         public void Process()
         {
-            LinkedListNode<WayObject> curr = wayObjects.First;
-            WayObject obj = curr.Value;
-
-            while (curr != null)
-            {
-                if(!obj.isValid || obj.isArrived)
-                {
-
-                }
-
-                curr = curr.Next;
-                obj = curr.Value;
-            }
+            ProcessArrivedWayObjects();
+            ProcessWayObjects();
         }
 
-        private void ProcessWayobject(WayObject wayObject)
-        {           
-            if (wayObject == null) return;
-
-            if (wayObject.isArrived)
-            {         
-               
-            }
-            //wayObject.Move();
-        }
-        
-        private void Remove(LinkedListNode<WayObject> node)
+        private void ProcessArrivedWayObjects()
         {
-            //LinkedListNode <WayObject> buf
+            wayObjects.RemoveAll((obj) => 
+            { 
+                if (obj.Arrived)
+                {
+                    obj.OnArrivalCallback();
+                    return true;
+                }
+                return false;
+            });
         }
 
-        private void RemoveAll(Predicate<WayObject> predicate)
-        {
-            LinkedListNode<WayObject> curr = wayObjects.First;
-
-            while (curr != null)
+        private void ProcessWayObjects()
+        { 
+            foreach (var wayObject in wayObjects)
             {
-                if(predicate(curr.Value))
-                {
-                    LinkedListNode<WayObject> buf = curr;
-                    curr = curr.Next;
-                    wayObjects.Remove(buf);
-                    continue;
-                }
-
-                curr = curr.Next;
+                wayObject.Move();
             }
         }
+
+
     }
 }

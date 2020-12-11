@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Toweristika.Other;
 
 namespace Toweristika.Ecs
 {
     public class WayHandler : IInizializable, IProcessable
     {
-        private WaypointsMono waypoints;
-        private List<WayObject> wayObjects;
+        private WayPointsMono waypoints;
 
         public void Inizialize()
         {
