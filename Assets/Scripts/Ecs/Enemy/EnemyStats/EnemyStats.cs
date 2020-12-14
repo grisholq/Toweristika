@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Toweristika.Ecs
 {
-    public class EnemyStats
+    [Serializable]
+    public struct EnemyStats
     {
-
+        [SerializeField] private float health;
+        [SerializeField] private float speed;
+        [SerializeField] private float damage;
     }
 }

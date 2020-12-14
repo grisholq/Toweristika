@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using LeopotamGroup.Ecs;
 
-public class EnemySystem : MonoBehaviour
+public class EnemySystem : IEcsRunSystem, IEcsInitSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Destroy()
+    {
+        
+    }
+
+    public void Run()
     {
         
     }
