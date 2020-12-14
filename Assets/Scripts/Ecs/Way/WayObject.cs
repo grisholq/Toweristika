@@ -5,11 +5,12 @@ namespace Toweristika.Ecs
 {
     public class WayObject
     {
-        private IMovable moveableObject;
-        private WaypointMono destination;       
+        private IMovable moveable;
+        private WayPointMono destination;       
+       
         private Vector3 delta;
 
-        public WaypointMono Destination
+        public WayPointMono Destination
         {
             get
             {
@@ -19,7 +20,15 @@ namespace Toweristika.Ecs
             set
             {
                 destination = value;
-                delta = (destination.Position - moveableObject.GetPosition()).normalized;
+                delta = (destination.Position - moveable.GetPosition()).normalized;
+            }
+        }
+
+        public IMovable Moveable
+        {
+            get
+            {
+                return moveable;
             }
         }
 
@@ -27,11 +36,11 @@ namespace Toweristika.Ecs
 
         public Action OnArrivalCallback { get; set; }
 
-        public WayObject(IMovable movable, WaypointMono start, WaypointMono dest)
+        public WayObject(IMovable movable, WayPointMono start)
         {
-            moveableObject = movable;
-            moveableObject.SetPosition(start.Position);
-            destination = dest;
+            moveable = movable;
+            moveable.SetPosition(start.Position);
+            Destination = start;
             Arrived = false;
         }
 
@@ -39,29 +48,29 @@ namespace Toweristika.Ecs
         {
             if (Arrived) return;
 
-            float d1 = delta.magnitude;
-            float d2 = (moveableObject.GetPosition() - destination.Position).magnitude;
+            float d1 = delta.magnitude * moveable.GetSpeed();
+            float d2 = (moveable.GetPosition() - Destination.Position).magnitude;
 
             if (d1 >= d2)
             {
-                moveableObject.SetPosition(destination.Position);
+                moveable.SetPosition(Destination.Position);
                 OnDestinationReached();
             }
             else
             { 
-                moveableObject.Move(delta); 
+                moveable.Move(delta); 
             }  
         }  
 
         private void OnDestinationReached()
         {
-            if(destination.NextWaypoint == null)
+            if(Destination.NextWaypoint == null)
             {
                 Arrived = true;
                 return;
             }
 
-            destination = destination.NextWaypoint;
+            Destination = Destination.NextWaypoint;
         }      
     }
 }

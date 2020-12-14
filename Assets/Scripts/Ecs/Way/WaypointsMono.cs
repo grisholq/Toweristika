@@ -4,21 +4,21 @@ namespace Toweristika.Ecs
 {
     public class WayPointsMono : MonoBehaviour
     {
-        [SerializeField] private WaypointMono[] waypoints;
+        [SerializeField] private WayPointMono[] waypoints;
         [SerializeField] private int waypointsCount;
 
 
-        public WaypointMono GetWaypoint(int index)
+        public WayPointMono GetWaypoint(int index)
         {
             return waypoints[index];
         }
 
-        public WaypointMono GetFirstWaypoint()
+        public WayPointMono GetFirstWaypoint()
         {
             return waypoints[0];
         }
 
-        public WaypointMono GetLastWaypoint()
+        public WayPointMono GetLastWaypoint()
         {
             return waypoints[waypoints.Length - 1];
         }

@@ -20,17 +20,26 @@ namespace Toweristika.Ecs
         }
         public void AddWayObject(AddWayObjectEvent add)
         {
-            //WayObject wayObject = new WayObject();
-            //wayObjects.Add(wayObject);
+            WayObject wayObject = new WayObject(add.Moveable, wayPoints.GetFirstWaypoint());
+            wayObject.OnArrivalCallback = add.Callback;
+            wayObjects.Add(wayObject);
         }
      
         public void RemoveWayObject(RemoveWayObjectEvent remove)
         {
-           // wayObjects.Remove(wayObject);
+            for (int i = 0; i < wayObjects.Count; i++)
+            {
+                if (wayObjects[i].Moveable == remove.Moveable)
+                {
+                    wayObjects.RemoveAt(i);
+                    return;
+                }
+            }
         }
 
         public void Process()
         {
+            if (wayObjects == null || wayObjects.Count == 0) return;
             ProcessArrivedWayObjects();
             ProcessWayObjects();
         }
@@ -55,7 +64,5 @@ namespace Toweristika.Ecs
                 wayObject.Move();
             }
         }
-
-
     }
 }

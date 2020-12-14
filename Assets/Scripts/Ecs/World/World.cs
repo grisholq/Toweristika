@@ -1,23 +1,40 @@
 ﻿using UnityEngine;
 using LeopotamGroup.Ecs;
 
-namespace MyGame
+namespace Toweristika.Ecs
 {
-    public class World : MonoBehaviour
+    public class World : SingletonBase<World>
     {
-        private EcsWorld world;
         private EcsSystems systems;
+        public EcsWorld Current { get; private set; }
 
-        private void Awake()
+        private void Start()
         {
-            world = new EcsWorld();
-            systems = new EcsSystems(world);
+            Current = new EcsWorld();
+            systems = new EcsSystems(Current);
+
+            systems
+            .Add(new InputSystem())
+            .Add(new WaySystem());
+            
+
             systems.Initialize();
         }
 
         private void Update()
         {
             systems.Run();
+        }
+
+        public void RemoveEntitiesWith<T>() where T : class, new()
+        {
+            EcsFilter<T> filter = Current.GetFilter<EcsFilter<T>>();
+            if (filter.EntitiesCount == 0) return;
+
+            for (int i = 0; i < filter.EntitiesCount; i++)
+            {
+                Current.RemoveEntity(filter.Entities[i]);
+            }
         }
     }
 }

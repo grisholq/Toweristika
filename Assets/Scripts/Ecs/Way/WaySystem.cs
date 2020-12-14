@@ -2,6 +2,7 @@
 
 namespace Toweristika.Ecs
 {
+    [EcsInject]
     public class WaySystem : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld world = null;
@@ -23,7 +24,8 @@ namespace Toweristika.Ecs
 
         public void Run()
         {
-            
+            wayObjectsFilter.Data.Process();
+            RunEvents();
         }
 
         public void RunEvents()
@@ -34,6 +36,7 @@ namespace Toweristika.Ecs
                 {
                     wayObjectsFilter.Data.AddWayObject(addWayObjectEvent.Components1[0]);
                 }
+                World.Instance.RemoveEntitiesWith<AddWayObjectEvent>();
             }
 
             if (removeWayObjectEvent.EntitiesCount != 0)
@@ -42,6 +45,7 @@ namespace Toweristika.Ecs
                 {
                     wayObjectsFilter.Data.RemoveWayObject(removeWayObjectEvent.Components1[0]);
                 }
+                World.Instance.RemoveEntitiesWith<RemoveWayObjectEvent>();
             }
         }
     }

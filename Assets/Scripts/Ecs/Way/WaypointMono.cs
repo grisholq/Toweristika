@@ -2,12 +2,12 @@
 
 namespace Toweristika.Ecs
 {
-    public class WaypointMono : MonoBehaviour
+    public class WayPointMono : MonoBehaviour
     {
-        [SerializeField] private WaypointMono nextWaypoint;
+        [SerializeField] private WayPointMono nextWaypoint;
         [SerializeField] [Range(0f, 1f)] private float speed;
 
-        public WaypointMono NextWaypoint
+        public WayPointMono NextWaypoint
         {
             get
             {
