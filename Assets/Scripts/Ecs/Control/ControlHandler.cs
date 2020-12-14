@@ -11,9 +11,18 @@ namespace Toweristika.Ecs
             
         }
 
-        public void ProcessInput(InputData inputData)
+        public void ProcessControl(InputData inputData)
         {
-            
+            if(inputData.isMoving)
+            {
+                Vector3 delta = inputData.Position - inputData.PreviousPosition;
+                World.Instance.Current.CreateEntityWith<CameraMoveEvent>().Delta = delta;
+            }
+
+            if(inputData.Phase == TouchPhase.Ended)
+            {
+
+            }
         }
     }
 }

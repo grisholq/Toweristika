@@ -2,6 +2,7 @@
 {
     public enum TransformObject
     {
-        WayPoints
+        WayPoints,
+        Camera
     }
 }

@@ -13,7 +13,7 @@ namespace Toweristika.Ecs
 
         public void Initialize()
         {
-
+            world.CreateEntityWith<ControlHandler>();
         }
 
         public void Destroy()

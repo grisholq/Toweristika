@@ -15,6 +15,8 @@ namespace Toweristika.Ecs
 
             systems
             .Add(new InputSystem())
+            .Add(new ControlSystem())
+            .Add(new CameraSystem())
             .Add(new WaySystem());
             
 
