@@ -6,6 +6,8 @@ namespace Toweristika.Ecs
 {
     public class ControlHandler : IInizializable
     {
+
+
         public void Inizialize()
         {
             
@@ -23,6 +25,15 @@ namespace Toweristika.Ecs
             {
 
             }
+        }
+
+        private void ProcessTap(InputData inputData)
+        {
+            RaycastHit hit;
+            //Vector3 dir = Camera.main.ScreenToWorldPoint(
+            //    );
+
+            //if(Physics.Raycast()
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Toweristika.Ecs
 
         public void Run()
         {
-            
+            controlHandlerFilter.Data.ProcessControl(inputDataFilter.Data);
         }
     }
 }

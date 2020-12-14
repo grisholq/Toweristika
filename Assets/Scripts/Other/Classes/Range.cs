@@ -1,14 +1,15 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Toweristika.Other
 {
     [Serializable]
     public class Range
     {
-        private int min;
-        private int max;
+        [SerializeField] private float min;
+        [SerializeField] private float max;
 
-        public int Min
+        public float Min
         {
             get
             {
@@ -16,12 +17,22 @@ namespace Toweristika.Other
             }
         }
 
-        public int Max
+        public float Max
         {
             get
             {
                 return max;
             }
+        }
+
+        public float Clamp(float val)
+        {
+            return Mathf.Clamp(val, min, max);
+        }
+
+        public bool InRange(float val)
+        {
+            return val <= max && val >= min;
         }
     }
 }

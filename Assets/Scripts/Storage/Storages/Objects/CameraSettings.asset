@@ -9,7 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9fb4fa8e2d1d6446b9f08fed92c2b85, type: 3}
-  m_Name: InputSettings
+  m_Script: {fileID: 11500000, guid: 76c79dacb2264d44cb45a2141bd8d799, type: 3}
+  m_Name: CameraSettings
   m_EditorClassIdentifier: 
-  MoveDistance: 20
+  StartPosition: {x: 0, y: 10, z: 0}
+  MoveSpeed: -0.03
+  BorderX:
+    min: -20
+    max: 20
+  BorderY:
+    min: 5
+    max: 15
+  BorderZ:
+    min: -20
+    max: 20
