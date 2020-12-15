@@ -4,16 +4,18 @@ using UnityEngine;
 namespace Toweristika.Other
 {
     [Serializable]
-    public class Range
+    public class Range : ClampedValue
     {
-        [SerializeField] private float min;
-        [SerializeField] private float max;
-
         public float Min
         {
             get
             {
                 return min;
+            }
+
+            set
+            {
+                min = value;
             }
         }
 
@@ -23,6 +25,11 @@ namespace Toweristika.Other
             {
                 return max;
             }
+
+            set
+            {
+                max = value;
+            }
         }
 
         public float Clamp(float val)
@@ -30,7 +37,7 @@ namespace Toweristika.Other
             return Mathf.Clamp(val, min, max);
         }
 
-        public bool InRange(float val)
+        public bool IsClamped(float val)
         {
             return val <= max && val >= min;
         }

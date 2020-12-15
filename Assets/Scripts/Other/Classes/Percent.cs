@@ -1,14 +1,14 @@
 ﻿namespace Toweristika.Other
 {
-    public class Percent
+    public class Percent : ClampedValue
     {
         private float percent;
-        const float max = 100;
-        const float min = 0;
 
         public Percent(float percent)
         {
             this.percent = percent;
+            min = 0;
+            max = 100;
         }
 
         public void SetPercent(float val, float minVal, float maxVal)

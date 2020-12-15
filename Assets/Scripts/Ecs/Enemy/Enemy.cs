@@ -1,8 +1,9 @@
-﻿using Toweristika.Other;
+﻿using UnityEngine;
+using Toweristika.Other;
 
 namespace Toweristika.Ecs
-{   
-    public class EnemyStats
+{
+    public class Enemy 
     {
         private Health health;
         private float speed;
