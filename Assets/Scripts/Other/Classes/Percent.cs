@@ -1,8 +1,12 @@
-﻿namespace Toweristika.Other
+﻿using System;
+using UnityEngine;
+
+namespace Toweristika.Other
 {
+    [Serializable]
     public class Percent : ClampedValue
     {
-        private float percent;
+        [SerializeField]private float percent;
 
         public Percent(float percent)
         {

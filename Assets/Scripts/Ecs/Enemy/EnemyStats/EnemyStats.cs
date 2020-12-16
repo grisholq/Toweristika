@@ -7,5 +7,6 @@ namespace Toweristika.Ecs
         private Health health;
         private float speed;
         private float damage;
+        
     }
 }

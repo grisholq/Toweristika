@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using LeopotamGroup.Ecs;
+﻿using LeopotamGroup.Ecs;
 
 namespace Toweristika.Ecs
 {
@@ -26,7 +25,7 @@ namespace Toweristika.Ecs
         }
 
         private void Update()
-        {
+        {           
             systems.Run();
         }
 
