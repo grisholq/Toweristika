@@ -1,7 +1,9 @@
-﻿namespace Toweristika.Other
+﻿using Toweristika.Ecs;
+
+namespace Toweristika.Other
 {
     public interface IDamagable
     {
-        void ApplyDamage(float damage);
+        void ApplyDamage(DamageGroup damage);
     }
 }

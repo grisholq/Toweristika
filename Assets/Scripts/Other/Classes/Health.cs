@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Toweristika.Other
 {
-    public class Health : ClampedValue, IDamagable, IHealable
+    public class Health : ClampedValue
     {
-        [SerializeField] float healthPoints;
+        [SerializeField] private float healthPoints;
 
         public float HealthPoints
         { 
@@ -28,10 +26,12 @@ namespace Toweristika.Other
             HealthPoints = HealthBorders.Max;
         }
 
-        public Health(int health)
+        public Health(float health, float min, float max)
         {
-            HealthPoints = health;
-            HealthPoints = HealthBorders.Clamp(HealthPoints);
+            HealthBorders = new Range();
+            HealthBorders.Min = min;
+            HealthBorders.Max = max;
+            HealthPoints = HealthBorders.Clamp(health);
         }
 
         public void ApplyDamage(float damage)

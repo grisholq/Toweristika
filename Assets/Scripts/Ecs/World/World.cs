@@ -19,13 +19,12 @@ namespace Toweristika.Ecs
             .Add(new TargetSystem())
             .Add(new WaySystem())
             .Add(new EnemySystem());
-            
 
             systems.Initialize();
         }
 
         private void Update()
-        {           
+        {              
             systems.Run();
         }
 
