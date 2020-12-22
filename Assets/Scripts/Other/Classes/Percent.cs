@@ -1,28 +1,24 @@
-﻿using System;
-using UnityEngine;
-
-namespace Toweristika.Other
+﻿namespace Toweristika.Other
 {
     public class Percent : ClampedValue
     {
-        private float percent;
+        public float Value { get; set; }
 
         public Percent(float percent)
         {
-            this.percent = percent;
+            this.Value = percent;
             min = 0;
             max = 100;
         }
 
-        public void SetPercent(float val, float minVal, float maxVal)
+        public void ValueToPercent(float val, float minVal, float maxVal)
         {
-            percent = val * (minVal + maxVal) / max;
+            Value = val * (minVal + maxVal) / max;
         }
 
-        public float GetPercentValue(float minVal, float maxVal)
+        public float PercentToValue(float minVal, float maxVal)
         {
-            return percent * (minVal + maxVal) / max;
+            return Value * (minVal + maxVal) / max;
         }
     }
-
 }
