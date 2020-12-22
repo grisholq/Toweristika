@@ -1,18 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemySettings : MonoBehaviour
+namespace Toweristika.Storage
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "EnemySettings", menuName = "MyAssets/Storages/EnemySettings")]
+    public class EnemySettings : Storage
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public EnemyWaves Waves;
+        public float SpawnPause;
     }
 }

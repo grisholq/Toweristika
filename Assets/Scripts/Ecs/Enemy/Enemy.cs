@@ -1,4 +1,5 @@
-﻿using Toweristika.Other;
+﻿using System;
+using Toweristika.Other;
 using UnityEngine;
 
 namespace Toweristika.Ecs
@@ -95,7 +96,7 @@ namespace Toweristika.Ecs
 
         public void Die()
         {
-
+            
         }
     }
 }

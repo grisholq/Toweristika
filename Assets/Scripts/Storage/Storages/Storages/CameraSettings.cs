@@ -13,4 +13,3 @@ namespace Toweristika.Storage
         public Range BorderZ;
     }
 }
-

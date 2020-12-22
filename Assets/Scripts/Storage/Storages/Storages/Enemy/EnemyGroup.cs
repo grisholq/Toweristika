@@ -1,18 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Toweristika.Ecs;
+using Toweristika.Other;
 
-public class EnemyGroup : MonoBehaviour
+namespace Toweristika.Storage
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class EnemyGroup : IIteratable<EnemyPrefab>
     {
-        
-    }
+        public EnemyPrefab enemy;
+        public int amount;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private int index = 0;
+
+        public EnemyPrefab GetCurrent()
+        {
+            return index >= amount ? null : enemy;
+        }
+
+        public bool IsDone()
+        {
+            return amount == 0 || index == amount;
+        }
+
+        public void Next()
+        {
+            index++;
+        }
     }
 }

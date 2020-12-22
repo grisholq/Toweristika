@@ -1,18 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Toweristika.Ecs;
+using Toweristika.Other;
 
-public class EnemyWaves : MonoBehaviour
+namespace Toweristika.Storage
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class EnemyWaves : IIteratable<EnemyWave>
     {
-        
-    }
+        public EnemyWave[] waves;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private int index;
+
+        public EnemyWave GetCurrent()
+        {
+            return index >= waves.Length ? null : waves[index];
+        }
+
+        public bool IsDone()
+        {
+            return waves.Length == 0 || index == waves.Length;
+        }
+
+        public void Next()
+        {
+            index++;
+        }
     }
 }
