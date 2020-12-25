@@ -4,10 +4,11 @@ using Toweristika.Storage;
 
 namespace Toweristika.Ecs
 {
-    public class EnemySpawner
+    public class EnemySpawner : IInizializable
     {
         private IIteratable<EnemyGroup> groups;
         private IIteratable<EnemyPrefab> group;
+        private Transform enemyParent;
 
         public bool IsWaveEnded
         {
@@ -15,6 +16,11 @@ namespace Toweristika.Ecs
             {
                 return groups == null || (groups.IsDone() && group.IsDone());
             }
+        }
+
+        public void Inizialize()
+        {
+            enemyParent = StorageFacility.Instance.GetTransform(TransformObject.EnemyParent);
         }
 
         public void SetEnemyWave(EnemyWave wave)
@@ -37,7 +43,8 @@ namespace Toweristika.Ecs
             EnemyPrefab enemyPrefab = group.GetCurrent();
             Enemy enemy = Object.Instantiate(enemyPrefab.prefab).gameObject.AddComponent<Enemy>();
             enemy.Inizialize(enemyPrefab.enemyStats);
+            enemy.transform.SetParent(enemyParent);
             return enemy;
-        }      
+        }        
     }
 }

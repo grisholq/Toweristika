@@ -3,6 +3,7 @@
     public enum TransformObject
     {
         WayPoints,
-        Camera
+        Camera,
+        EnemyParent
     }
 }

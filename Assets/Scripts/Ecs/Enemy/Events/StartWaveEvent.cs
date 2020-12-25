@@ -3,7 +3,7 @@
 namespace Toweristika.Ecs
 {
     [EcsIgnoreInFilter]
-    public class EnemiesWavesEndedEvent
+    public class StartWaveEvent
     {
 
     }
